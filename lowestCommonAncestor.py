@@ -45,6 +45,7 @@ class Node:
 
        // this is a node of the tree , which contains info as data, left , right
 '''
+#------------------------------------------------------------------------------#
 
 def lca(root, v1, v2):
   #Enter your code here
@@ -57,9 +58,16 @@ def lca(root, v1, v2):
         return helperIndex(v2_path, v1_path)
     
 def helperIndex(v1_path, v2_path):
-    for i in range(len(v1_path)):
-        if v1_path[i] in v2_path:
+    i = 0
+    j = 0
+
+    while i < len(v1_path) and j < len(v2_path):
+        if v1_path[i] == v2_path[j]:
             return v1_path[i]
+        if v1_path[i] > v2_path[j]:
+            j += 1
+        if v1_path[i] < v2_path[j]:
+            i += 1
 
 def helper(root, val):
 
@@ -73,21 +81,18 @@ def helper(root, val):
         return None
     
     else:
-        left = helper(root.left, val)
-        right = helper(root.right, val)
+        if val < root.info:
+            branch = helper(root.left, val)
+        else:
+            branch = helper(root.right, val)
 
-        if left is None and right is None:
+        if branch is None:
             return None
-        
-        if left is not None:
-            left.append(root)
-            return left
-        
-        if right is not None:
-            right.append(root)
-            return right
+        else:
+            branch.append(root)
+            return branch
 
-
+#------------------------------------------------------------------------------#
 
 tree = BinarySearchTree()
 t = int(input())
