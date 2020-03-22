@@ -1,0 +1,37 @@
+/* Add your css styles here */
+
+.row {
+	width: 100%;
+}
+
+.row, .col {
+    display: flex;
+	/* flex-direction: row; */
+	flex-wrap: wrap;
+}
+
+/* .col {
+	background-color: red;
+} */
+.inner {
+	height: 100px;
+	border: 1px solid black;
+}
+
+@media screen and (min-width: 721px) {
+	.col, .inner {
+		flex: 25%;
+	}
+}
+@media screen and (min-width: 361px) and (max-width:720px) {
+	.col, .inner {
+		flex: 45%;
+	}
+}
+@media screen and (max-width: 360px) {
+	.col, .inner {
+		flex: 100%;
+	}
+}
+
+
